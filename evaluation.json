@@ -1,0 +1,6 @@
+[
+  {"question": "Who is the principal of AIT?", "source": "AIT_Chikkamagaluru_RAG_Knowledge_Base_Expanded.txt"},
+  {"question": "AIT admission eligibility", "source": "AIT_Chikkamagaluru_RAG_Knowledge_Base_Expanded.txt"},
+  {"question": "AIT library volumes", "source": "AIT_Chikkamagaluru_RAG_Knowledge_Base_Expanded.txt"},
+  {"question": "AIT hostel accommodation", "source": "AIT_Chikkamagaluru_RAG_Knowledge_Base_Expanded.txt"}
+]

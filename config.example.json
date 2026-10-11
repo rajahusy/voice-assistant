@@ -1,0 +1,26 @@
+{
+  "knowledge_dir": "knowledge",
+  "database": "data/knowledge.sqlite3",
+  "cloud_enabled": false,
+  "cloud_documents": false,
+  "stt": "auto",
+  "vosk_model": "",
+  "tts": "auto",
+  "piper_model": "",
+  "continuous": true,
+  "energy_threshold": 350,
+  "silence_seconds": 0.9,
+  "speech_rate": 165,
+  "startup_greeting": "Welcome to the college assistant. How can I help you?",
+  "transcription_model": "gpt-4o-transcribe",
+  "transcription_prompt": "English college enquiries at AIT College, Adichunchanagiri Institute of Technology, Chikkamagaluru. Vocabulary: AIT, A I T, college, principal, HOD, admission, fees, qualification, Computer Science, CSE, ECE. Transcribe what is spoken; do not answer the question.",
+  "transcription_aliases": {
+    "aat golan": "AIT college",
+    "aat college": "AIT college"
+  },
+  "cloud_compose": false,
+  "tts_model": "gpt-4o-mini-tts",
+  "tts_voice": "marin",
+  "tts_speed": 0.95,
+  "tts_instructions": "Speak in clear, warm, natural conversational English. Use a calm tone, smooth pacing, and short natural pauses. Pronounce AIT as the letters A I T. Read names carefully. Do not add or change words."
+}

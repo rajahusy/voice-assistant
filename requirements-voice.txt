@@ -1,0 +1,2 @@
+# Optional microphone / Piper playback. PortAudio required on Linux.
+sounddevice==0.5.6

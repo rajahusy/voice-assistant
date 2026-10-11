@@ -1,0 +1,1 @@
+# Text mode and OpenAI REST use Python standard library only.

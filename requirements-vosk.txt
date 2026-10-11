@@ -1,0 +1,2 @@
+# Optional only. Verify wheel availability on target first; not required for cloud STT.
+vosk==0.3.45

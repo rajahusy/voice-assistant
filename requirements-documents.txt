@@ -1,0 +1,2 @@
+# Optional PDF extraction; DOCX uses standard-library ZIP/XML.
+pypdf==6.20.0

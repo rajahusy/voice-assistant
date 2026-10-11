@@ -1,0 +1,46 @@
+{
+  "python": "3.13.5",
+  "architecture": "aarch64",
+  "automated_tests_passed": 27,
+  "incremental_index": {
+    "updated": 0,
+    "skipped": 3,
+    "removed": 0,
+    "duplicates": 0,
+    "errors": []
+  },
+  "index_seconds": 0.0013942539999334258,
+  "question": "Who is the principal of AIT?",
+  "route": "local",
+  "answer": "Dr. Goutham M A, per AIT's public self-disclosure and ECE faculty pages accessed 2026-10-10.",
+  "retrieval_seconds": 0.004900951000308851,
+  "transcription_seconds": 0.0,
+  "ai_seconds": 0.0,
+  "synthesis_seconds": 0.0,
+  "total_seconds": 0.006925397000486555,
+  "current_memory_mib": 24.00390625,
+  "retrieval_evaluation": {
+    "cases": 4,
+    "recall_at_4": 1.0,
+    "details": [
+      {
+        "question": "Who is the principal of AIT?",
+        "hit": true
+      },
+      {
+        "question": "AIT admission eligibility",
+        "hit": true
+      },
+      {
+        "question": "AIT library volumes",
+        "hit": true
+      },
+      {
+        "question": "AIT hostel accommodation",
+        "hit": true
+      }
+    ]
+  },
+  "hardware_audio_tested": false,
+  "live_api_tested": false
+}

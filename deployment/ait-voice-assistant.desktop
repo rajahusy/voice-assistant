@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=AIT College Voice Assistant
+Comment=Start the voice assistant after desktop login
+Exec=/usr/bin/lxterminal --title="AIT College Assistant" --command=/home/aitcs/Documents/ait_project/deployment/start-desktop-voice.sh
+Path=/home/aitcs/Documents/ait_project
+Terminal=false
+StartupNotify=false

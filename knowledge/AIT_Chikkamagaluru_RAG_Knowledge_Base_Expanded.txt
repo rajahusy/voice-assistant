@@ -1,0 +1,495 @@
+AIT CHIKKAMAGALURU - RAG KNOWLEDGE BASE
+=====================================
+Institution: Adichunchanagiri Institute of Technology (AIT), Chikkamagaluru, Karnataka, India
+Official website: https://aitckm.edu.in/
+Compiled: 2026-10-10
+Collection method: Public-facing pages from the official college website located and read through web search/indexed page retrieval. This is a curated, source-grounded extraction/paraphrase, NOT a complete automated crawl or verbatim mirror of every site page. Linked PDF contents have not been comprehensively extracted.
+Intended usage: Plain-text knowledge source for retrieval-augmented generation (RAG), institutional FAQ chatbot, and student enquiry system.
+
+RAG QUALITY RULES
+- Each section below represents a self-contained topical document with an identifier, URL, and retrieval keywords.
+- Cite the relevant source URL in chatbot answers.
+- Prefer the official Admissions page for sanctioned program intakes and admissions eligibility. Other college pages sometimes show older, inconsistent figures.
+- Admissions, fee amounts, deadlines, staff posts, bus schedules and placements can change. If an exact current value is not in the knowledge base, say it is unavailable and direct the user to the relevant college office.
+- Do not fabricate exact fees, placement percentages, scholarships, hostel prices, deadlines, bus routes or contact names.
+- Historical placement-company lists are not guarantees of future recruitment.
+
+====================================================================
+[DOC-001] COLLEGE IDENTITY AND OVERVIEW
+Source: https://aitckm.edu.in/about-us/
+Keywords: AIT, college, full name, history, established, Chikkamagaluru, engineering institute
+
+Q: What is AIT Chikkamagaluru?
+A: AIT stands for Adichunchanagiri Institute of Technology, an engineering and management educational institution located in Chikkamagaluru, Karnataka.
+Q: When was AIT established?
+A: It was established in 1980, with the blessings of Sri Sri Sri Dr. Balagangadharanatha Mahaswamiji.
+Q: Which university is AIT affiliated to?
+A: Visvesvaraya Technological University (VTU), Belagavi.
+Q: Is AIT approved by AICTE?
+A: Yes. The official institutional overview says it is approved by AICTE, New Delhi.
+Q: What is AIT's NAAC grade?
+A: The official website states it has NAAC 'A' grade accreditation. It also reports NBA accreditation, including accreditation twice as described on the overview page. Accreditation applicability, cycle and expiry should be verified on the current official documents.
+Q: How large is the campus?
+A: The institutional overview describes a campus of approximately 65 acres.
+
+====================================================================
+[DOC-002] INSTITUTIONAL VISION AND MISSION
+Source: https://aitckm.edu.in/about-us/
+Keywords: vision, mission, excellence, ethics, innovation, entrepreneurship
+
+Vision: Develop AIT as a centre of excellence and continuously improve technical education and human-resource advancement.
+Mission: Pursue excellence in education, entrepreneurship and innovation while producing engineers with strong ethical standards, integrity and credibility.
+
+====================================================================
+[DOC-003] GOVERNING TRUST AND INSTITUTIONAL ROOTS
+Sources: https://aitckm.edu.in/ ; https://aitckm.edu.in/about-us/
+Keywords: trust, AST, Sri Adichunchanagiri Shikshana Trust, founder
+
+The college is associated with Sri Adichunchanagiri Shikshana Trust. The home page reports that the Trust was established in 1973 by Sri Sri Sri Ramanandanatha Swamigalu. AIT was established in 1980. The home page discusses the contributions of Sri Sri Sri Dr. Balagangadharanatha Mahaswamiji and Sri Sri Sri Dr. Nirmalanandanatha Mahaswamiji.
+
+====================================================================
+[DOC-004] PROGRAM TYPES AND DURATIONS
+Source: https://aitckm.edu.in/admissions/
+Keywords: BE, BTech, MTech, MBA, PhD, years, semester, degree
+
+AIT lists these broad programs: Bachelor of Engineering (BE), Master of Technology (MTech), Master of Business Administration (MBA), and PhD research.
+BE duration: 4 years / 8 semesters.
+MTech duration: 2 years / 4 semesters.
+MBA duration: 2 years / 4 semesters.
+PhD duration varies and should be confirmed with the college and relevant university regulations.
+The admissions page contains a top-level total intake and a separate course-wise seat matrix that are not fully consistent. For each course, quote its course-wise sanctioned intake and flag that figures require current-year verification.
+
+====================================================================
+[DOC-005] BACHELOR OF ENGINEERING BRANCHES / SANCTIONED INTAKES
+Source: https://aitckm.edu.in/admissions/
+Keywords: BE departments, branches, undergraduate engineering seats, AI ML, CSE, ECE, ISE, robotics
+
+As listed in the official Admissions page course-wise table at extraction time:
+1. Artificial Intelligence and Machine Learning - 60
+2. Civil Engineering - 60
+3. Computer Science and Engineering - 120
+4. Electrical and Electronics Engineering - 60
+5. Electronics and Communication Engineering - 120
+6. Information Science and Engineering - 60
+7. Mechanical Engineering - 60
+8. Computer Science and Engineering (Data Science) - 60
+9. Robotics and Artificial Intelligence Engineering - 30
+Note: The course-wise numbers add to 630, while the same page's broad 'total intake' summary states 600. Do not claim a reconciled total without a current sanctioned-intake document.
+
+====================================================================
+[DOC-006] UNDERGRADUATE ADMISSION REQUIREMENTS
+Source: https://aitckm.edu.in/admissions/
+Keywords: admission eligibility, PUC, 12th, PCM, KCET, COMEDK, JEE, marks
+
+The AIT admissions page describes BE eligibility as follows:
+- Candidates must pass second PUC, 10+2 or an equivalent examination.
+- Physics and Mathematics are compulsory subjects.
+- An additional eligible subject should be one of Chemistry, Biotechnology, Biology, Electronics, or Computer Science.
+- English should have been studied as a language.
+- General Merit minimum aggregate in relevant subjects: 45%.
+- SC, ST and certain Karnataka backward-class categories: 40%, according to the site.
+- Candidates should have a qualifying rank in CET, COMEDK or JEE, as applicable.
+Admission is subject to current Government of Karnataka and AICTE norms. The page does not establish every counselling deadline or cutoff rank.
+
+====================================================================
+[DOC-007] MASTER OF TECHNOLOGY SPECIALIZATIONS
+Source: https://aitckm.edu.in/admissions/
+Keywords: MTech courses, post graduate, structural, CSE, digital electronics
+
+MTech programs and course-wise listed sanctioned intakes:
+- Structural Engineering: 24
+- Computer Science and Engineering: 9
+- Digital Electronics and Communication Systems: 9
+The admissions page separately shows a broad MTech total intake of 81, which conflicts with the displayed course-wise figure sum of 42. Verify with the current approved seat matrix rather than presenting a single total.
+
+====================================================================
+[DOC-008] MTECH ELIGIBILITY
+Source: https://aitckm.edu.in/admissions/
+Keywords: MTech eligibility, GATE, marks, postgraduate admission
+
+The admissions page refers to valid GATE scores and appropriate qualifying examinations. It lists at least 50% aggregate in the qualifying degree generally and 45% for Karnataka SC, ST and Category-1 candidates, subject to current competent-authority rules. Confirm entrance/admission route directly with the institution for the intake year.
+
+====================================================================
+[DOC-009] MBA PROGRAM AND ELIGIBILITY
+Source: https://aitckm.edu.in/admissions/
+Keywords: MBA, business administration, finance, marketing, HR, management
+
+AIT offers a two-year MBA with Finance, Marketing and Human Resource Management specializations, including single/dual options mentioned on the website. The course-wise sanctioned intake is listed as 60. Applicants generally need a recognized bachelor's degree of at least 3 years, with 50% aggregate, or 45% for specified Karnataka reserved categories, subject to applicable rules.
+
+====================================================================
+[DOC-010] PHD RESEARCH AREAS
+Source: https://aitckm.edu.in/admissions/
+Keywords: PhD, research, doctoral, disciplines
+
+The admissions page lists doctoral research disciplines: Civil Engineering, Mechanical Engineering, Electronics and Communication Engineering, Electrical and Electronics Engineering, Computer Science and Engineering, Information Science and Engineering, Physics, Chemistry, Mathematics, and Business Administration. Admission openings, supervisor availability and rules should be verified separately.
+
+====================================================================
+[DOC-011] ACADEMIC DEPARTMENTS
+Sources: https://aitckm.edu.in/about-us/mandatory-disclosure/ ; https://aitckm.edu.in/about-us/
+Keywords: departments, branches, courses, academic departments
+
+The public self-disclosure page lists undergraduate departments in Artificial Intelligence & Machine Learning; Civil Engineering; Computer Science & Engineering; Computer Science & Engineering (Data Science); Electronics & Communication Engineering; Electrical & Electronics Engineering; Information Science & Engineering; Mechanical Engineering; Robotics & Artificial Intelligence Engineering. Postgraduate listings include MBA, Computer Science & Engineering, Digital Electronics & Communication Engineering, and Structural Engineering.
+
+====================================================================
+[DOC-012] COMPUTER SCIENCE AND ENGINEERING DEPARTMENT
+Sources: https://aitckm.edu.in/cse/ ; https://aitckm.edu.in/cse/faculty-achievements-cse/
+Keywords: CSE, computer science, HOD, research centre, labs, workshops
+
+AIT's Department of Computer Science and Engineering was established in 1986. The department offers undergraduate and postgraduate education, supports a VTU-recognized research centre, and organizes conferences, seminars, workshops and training programs. The departmental aims include technical foundation, problem solving, industry interaction, emerging technologies, and research projects.
+The faculty-achievements page identifies Dr. Pushpa Ravikumar as the CSE Head and lists UG intake as 120 and PG intake as 9.
+DATA DISCREPANCY: The general CSE overview page refers to PG intake of 18; other institutional admission and departmental information lists 9. Use the current Admissions page for the quoted course-wise sanctioned intake, and confirm any enrollment decision with AIT.
+Department contact on faculty-achievements page: cs@aitckm.in; +91-8262-220444.
+
+====================================================================
+[DOC-013] CSE FACULTY PROFILE EXAMPLE
+Source: https://aitckm.edu.in/personnel/pushpa-ravikumar/
+Keywords: Dr Pushpa Ravikumar, CSE head, professor, faculty, research interests
+
+The institution's faculty profile describes Dr. Pushpa Ravikumar as Professor and Head of Computer Science and Engineering. Research interests listed include data mining, social network analysis, big-data analytics, computer networks, sentiment analysis, image processing, community mining and recommender systems. Staff designations can change; verify before displaying them as current.
+
+====================================================================
+[DOC-014] CAMPUS AND LEARNING FACILITIES
+Source: https://aitckm.edu.in/facilities/
+Keywords: classrooms, auditorium, canteen, campus, sports, central facilities
+
+AIT's Central Facilities page describes classroom and auditorium infrastructure, campus cafeteria, areas for sports and extracurricular activities, and library services. The college website mentions indoor and outdoor games and spaces for student study and recreation.
+
+====================================================================
+[DOC-015] LIBRARY
+Source: https://aitckm.edu.in/facilities/library/
+Keywords: library, books, journal, digital library, Koha, library contact
+
+The official library page describes approximately 80,000 volumes and around 120 technical journals and periodicals. It mentions a dedicated reading room, department-level association libraries, DELNET membership, computerised library services and Koha e-library access.
+Library contact: librarian@aitckm.in; phone +91 94806 46981.
+Library users are required to follow due dates and ID-card scanning procedures; additional borrowing rules are on the library page.
+Counts are as stated on the webpage and may change.
+
+====================================================================
+[DOC-016] HOSTEL ACCOMMODATION
+Source: https://aitckm.edu.in/facilities/hostel/
+Keywords: hostel, boys hostel, girls hostel, mess, wifi, rooms, fee
+
+The institute provides hostel accommodation described as single, double and triple sharing options. The official page says facilities include basic furniture, ventilated rooms, bathrooms, hot water, RO drinking water, free Wi-Fi, library access, hostel transport, CCTV surveillance, first-aid provision, laundry arrangements, and separate mess halls for male and female residents. It describes separate cooking arrangements for vegetarian and non-vegetarian food.
+Hostel fees, allotment deadlines, available room inventory and specific curfew rules were not confirmed. Contact the hostel administration.
+
+====================================================================
+[DOC-017] TRANSPORTATION
+Source: https://aitckm.edu.in/facilities/transportation/
+Keywords: college bus, bus timing, transportation, routes, city, transport contact
+
+AIT's transportation page states that the institution operates more than 15 buses, with city-to-campus transportation during working hours, broadly described as 7:00 AM to 7:00 PM. Separate arrangements for the girls' hostel and some special events are described. Services are also described for laboratory, sports, library and special-class needs.
+Contact shown: transport@aitckm.in.
+Exact route stops, fares and pickup times are not provided in this extract; verify with the transport office.
+
+====================================================================
+[DOC-018] SPORTS AND PHYSICAL EDUCATION
+Source: https://aitckm.edu.in/facilities/ped/
+Keywords: sports, gym, cricket, football, indoor, outdoor, yoga, basketball
+
+The Department of Physical Education supports fitness, sports, cultural development and events. Facilities listed on its webpage include athletics track, cricket field, football, handball, basketball, volleyball, kho-kho, kabaddi, throwball, ball badminton, chess, carrom, table tennis, gymnasium and yoga spaces. Students participate in college and intercollegiate events. The listed Director of Physical Education is Mr. Praveen Kumar S; verify current appointment as needed.
+
+====================================================================
+[DOC-019] TRAINING AND PLACEMENT CELL
+Source: https://aitckm.edu.in/placement-cell/
+Keywords: placement, career, HRD, training, aptitude, mock interview, recruiter
+
+The AIT HRD/Placement Cell provides employability training, aptitude preparation, soft skills, career preparation, technical training, resume writing, group discussion and interview skills. The page describes a staged approach beginning in early semesters and continuing through later-semester technical and placement-oriented preparation. Campus and pooled-campus recruiting are discussed. Placement support is not a guarantee of a job.
+The page names Mr. Siddartha D.E as Placement Officer, with mobile 7411153328, and hrd@aitckm.in. As staff details can change, verify before contacting.
+
+====================================================================
+[DOC-020] PLACEMENT SUPPORT INFRASTRUCTURE
+Source: https://aitckm.edu.in/placement-cell/
+Keywords: placement auditorium, training rooms, mock test, aptitude exam
+
+The placement page describes an HRD block with a 600-seat auditorium, training rooms, group-discussion rooms, interview rooms and a dedicated computer lab for corporate online assessments. Industry seminars, mock tests and assessments help candidates prepare for hiring.
+
+====================================================================
+[DOC-021] COMPANIES MENTIONED IN PAST RECRUITMENT
+Source: https://aitckm.edu.in/student-credentials/
+Keywords: recruiters, placement companies, TCS, Wipro, Capgemini, Mindtree
+
+The college's historical 'companies visited the campus' list includes TCS, Wipro, Capgemini, SLK Software, Robosoft, NTT DATA, Mindtree, Wissen Infotech, TVS, Huawei Technologies, Trigent Software, ICICI Bank, and others.
+IMPORTANT: The list is not necessarily for the latest placement season. It should not be used to assert a current hiring partnership, current salary package, placement percentage or promised offers.
+
+====================================================================
+[DOC-022] PLACEMENT ACTIVITY TIMELINES
+Sources: https://aitckm.edu.in/placement-cell/hiring-timelines/ ; https://aitckm.edu.in/news-and-events/
+Keywords: placement report, 2024-25, placements 2023-24, hiring history
+
+The official site lists placement activity timeline entries for 2024-25, 2023-24, 2022-23 and earlier batches. It provides an archive for placement-related news. This knowledge base has not verified precise percentages, packages, highest salary offers, or student totals for these years. For these, consult the specific official annual activity report.
+
+====================================================================
+[DOC-023] STUDENT DEVELOPMENT AND INDUSTRY INTERACTION
+Source: https://aitckm.edu.in/student-credentials/
+Keywords: career mentoring, industry, skills, mock tests, counselling
+
+The placement and training function describes student orientation, psychometric and communication assessments, industry interaction, pre-placement training, soft-skill workshops, technical activities, recruitment preparation, alumni interaction and mentoring, career guidance and counselling.
+
+====================================================================
+[DOC-024] STUDENT SUPPORT / SAFETY COMMITTEES
+Sources: https://aitckm.edu.in/about-us/mandatory-disclosure/ ; https://aitckm.edu.in/about-us/administrative-committees/anti-ragging-committee/
+Keywords: anti-ragging, student grievances, complaints, committee, support
+
+The public self-disclosure page points to student grievance redressal and ombudsperson information, anti-ragging cell, internal complaints committee, equal opportunity cell, support for socio-economically disadvantaged groups, and accessibility-related facilities. The anti-ragging page describes the institution's anti-ragging cell and its preventive, reporting and grievance-handling functions. For emergency or active safety concerns, contact relevant college authorities directly rather than relying on chatbot responses.
+
+====================================================================
+[DOC-025] RESEARCH AND DEVELOPMENT
+Source: https://aitckm.edu.in/about-us/administrative-committees/researchanddevelopment/
+Keywords: research, PhD guide, R&D, supervisors, research centre
+
+AIT's research and development information lists recognized supervisors and research activities across multiple departments, including Civil, CSE, Electronics and Communication, Electrical and Electronics, Information Science, Mechanical, Mathematics and Physics. Research interests described across the page cover technical and multidisciplinary areas. Supervisor capacities and scholar counts are time-sensitive and must be checked directly before research admissions.
+
+====================================================================
+[DOC-026] STUDENT ACTIVITIES AND EVENTS
+Source: https://aitckm.edu.in/news-and-events/
+Keywords: hackathon, events, conference, FDP, alumni, competition
+
+Recent posts displayed in the retrieved Events archive included Vimarsha (May 25, 2026), placement activity timeline postings (May 15, 2026), a December 2025 conference on smart electronics and machine informatics, an AICTE ATAL faculty development program, Alumni Meet 2025, and a Smart India internal hackathon held in 2025. These are examples of posted activities, not an exhaustive or prospective calendar.
+
+====================================================================
+[DOC-027] OFFICIAL ADDRESS AND GENERAL CONTACT
+Source: https://aitckm.edu.in/contact/
+Keywords: address, map, phone, principal email, contact, location
+
+Name: Adichunchanagiri Institute of Technology
+Address: Jyothinagara, Chikkamagaluru - 577102, Karnataka, India.
+General landline: 08262-220444
+General mobile as shown: +91 9448554971
+Email: principal@aitckm.in
+Alternative email stated by contact page: info@aitckm.in
+The contact page says the institution is around 250 km from Bengaluru, connected via NH75. For precise directions, consult live maps.
+
+====================================================================
+[DOC-028] ADMINISTRATIVE CONTACTS
+Source: https://aitckm.edu.in/contact/
+Keywords: director, principal, registrar, placement officer, HR
+
+At extraction time, the official contact page lists:
+Director: Dr. C K Subbaraya - 9448480343 - office@aitckm.in
+Principal: Dr. Goutham M A - 9448554971 - principal@aitckm.in
+Registrar: Mr. Sagar N S - 9141133697 - registrar@aitckm.in
+HR/Placement Cell: 7411153328 - hrd@aitckm.in
+General Enquiry: 08262220444
+These are website-published office contacts; names and numbers may change.
+
+====================================================================
+[DOC-029] OFFICE WORKING HOURS
+Source: https://aitckm.edu.in/contact/
+Keywords: college timing, working hours, holidays, open days
+
+Website-listed hours: Monday to Saturday, 9:00 AM to 5:00 PM.
+Holidays: First and third Saturdays and government holidays, as stated on the site.
+This is the general office schedule; class schedules, individual department availability and holiday exceptions can differ.
+
+====================================================================
+[DOC-030] FEES AND SCHOLARSHIP INFORMATION - VERIFICATION REQUIRED
+Sources: https://aitckm.edu.in/about-us/mandatory-disclosure/ ; https://aitckm.edu.in/admissions/
+Keywords: fees, tuition, scholarship, government scholarship, admissions fee
+
+The official public self-disclosure page links to prospectus and fee structure documents and says fee refunds follow UGC guidelines. Exact program-specific tuition, hostel charges, management quota payments, category-based scholarship amounts, and deadlines were not reliably extracted from a current fee chart in this collection.
+Answer policy: Do not state exact fees or scholarships from this document. Refer student enquiries to the current official fee-structure link on the disclosure page or admissions office.
+
+====================================================================
+[DOC-031] ACADEMIC DISCLOSURE AND DOCUMENT LINKS
+Source: https://aitckm.edu.in/about-us/mandatory-disclosure/
+Keywords: disclosure, academic calendar, annual reports, accreditation, eligibility, prospectus
+
+The public self-disclosure page indexes institution reports, governing and administrative information, academic calendars, academic programs, approval/accreditation documents, prospectus and fee structure, research, placements, committees and campus facilities. It is an important starting point when the RAG system needs to retrieve an official current policy PDF or an annual report.
+
+====================================================================
+[DOC-032] ALUMNI AND PROFESSIONAL ACTIVITIES
+Sources: https://aitckm.edu.in/ ; https://aitckm.edu.in/about-us/
+Keywords: alumni, chapters, IEEE, ISTE, IEI
+
+AIT describes alumni engagement and technical professional chapters/activities involving organizations such as IEEE, ISTE and IEI. The college emphasizes seminars, competitions, industry interaction and extracurricular development.
+
+====================================================================
+[DOC-033] WHAT THE RAG CHATBOT SHOULD NOT GUESS
+Sources: https://aitckm.edu.in/admissions/ ; https://aitckm.edu.in/about-us/mandatory-disclosure/ ; https://aitckm.edu.in/contact/
+Keywords: unknown, hallucination, accuracy, policy, unavailable
+
+Examples of missing or changing information: 2026-27 exact fee payable by a specific student; active placement package and student placement count; live cut-off ranks; hostel vacancies and prices; current bus route timetable; examination results; individual attendance; personal student records; exact upcoming deadlines. Respond: 'I could not verify that information from the official AIT sources included in my knowledge base. Please consult https://aitckm.edu.in/ or the relevant office.'
+
+====================================================================
+RECOMMENDED RAG PIPELINE
+1. Ingest this UTF-8 text file.
+2. Split into documents using the [DOC-###] markers, retaining Source and Keywords as metadata.
+3. For longer sections, chunk into around 300-600 tokens with 50-100 token overlap; do not separate the source URL from its content.
+4. Generate embeddings (e.g., a multilingual sentence-transformer) and index in FAISS, Chroma, or another vector store.
+5. Use top-k retrieval plus optional reranking.
+6. In the answer prompt: use only retrieved AIT context, cite the official URL, flag conflicting figures, and explicitly say when evidence is missing.
+7. Recheck time-sensitive pages regularly before updating the vector index.
+
+SOURCE INDEX
+https://aitckm.edu.in/
+https://aitckm.edu.in/about-us/
+https://aitckm.edu.in/admissions/
+https://aitckm.edu.in/contact/
+https://aitckm.edu.in/about-us/mandatory-disclosure/
+https://aitckm.edu.in/cse/
+https://aitckm.edu.in/cse/faculty-achievements-cse/
+https://aitckm.edu.in/personnel/pushpa-ravikumar/
+https://aitckm.edu.in/facilities/
+https://aitckm.edu.in/facilities/library/
+https://aitckm.edu.in/facilities/hostel/
+https://aitckm.edu.in/facilities/transportation/
+https://aitckm.edu.in/facilities/ped/
+https://aitckm.edu.in/placement-cell/
+https://aitckm.edu.in/placement-cell/hiring-timelines/
+https://aitckm.edu.in/student-credentials/
+https://aitckm.edu.in/about-us/administrative-committees/anti-ragging-committee/
+https://aitckm.edu.in/about-us/administrative-committees/researchanddevelopment/
+https://aitckm.edu.in/news-and-events/
+
+END OF FILE
+
+
+====================================================================
+EXPANDED OFFICIAL WEBSITE MATERIAL — VERIFIED WEB PAGES (2026-10-10)
+====================================================================
+Coverage: The sections below supplement DOC-001 through DOC-033. They are newly sourced from the institute's public website, not from internal college records. Directory listings may change. Some external PDFs and linked forms were not fully extracted.
+
+[DOC-034] CURRENT PRINCIPAL AND HISTORICAL-DOCUMENT WARNING
+Source: https://aitckm.edu.in/about-us/mandatory-disclosure/
+Source: https://aitckm.edu.in/ece/faculties-ece/
+Keywords: current principal, who is principal, AIT principal, Goutham MA, Jayadeva
+Q: Who is the principal of AIT Chikkamagaluru?
+A: Dr. Goutham M A, per AIT's public self-disclosure and ECE faculty pages accessed 2026-10-10.
+Q: Why do some older AIT PDFs show Dr. C T Jayadeva as principal?
+A: Archived records and brochures can show historical office-holders. Do not treat older dated PDFs as proof of the current principal. Prefer the current public self-disclosure page.
+
+[DOC-035] ACADEMIC LEADERSHIP AND HEADS OF DEPARTMENT
+Sources:
+https://aitckm.edu.in/ce/faculties/
+https://aitckm.edu.in/me/faculties-me/
+https://aitckm.edu.in/eee/faculties-eee/
+https://aitckm.edu.in/ece/faculties-ece/
+https://aitckm.edu.in/cse/faculties-cse/
+https://aitckm.edu.in/ise/faculties/
+https://aitckm.edu.in/department-of-artificial-intelligence-and-machine-learning/faculties-aiml/
+https://aitckm.edu.in/pg-ms/faculties/
+Keywords: HOD, head of department, department head, principal, faculty
+Civil Engineering: Dr. Kiran B M — Professor and HOD.
+Mechanical Engineering: Dr. G M Satyanarayana — Professor and HOD.
+Electrical and Electronics Engineering: Dr. G R Veerendra — Professor and HOD.
+Electronics and Communication Engineering: Dr. Jagadeesh Chandra A P — Professor and HOD.
+Computer Science and Engineering: Dr. Pushpa Ravikumar — Professor and Head.
+Information Science and Engineering: Dr. S Sampath — Head of Department.
+Artificial Intelligence and Machine Learning: Dr. Sunitha M R — Head of Department.
+MBA / PG Department of Management Studies: Dr. Prakash Rao K S — Professor and Head on a faculty page marked last updated 2022-11-24; verify current incumbency before asserting as up to date.
+Mathematics: Dr. Shreekanth S appears as department head in a recently indexed anti-ragging committee list; see https://aitckm.edu.in/about-us/administrative-committees/anti-ragging-committee/ .
+Heads for Data Science and Robotics/AI are not verified in the material collected. Do not guess.
+
+[DOC-036] CIVIL ENGINEERING FACULTY DIRECTORY
+Source: https://aitckm.edu.in/ce/faculties/
+Keywords: CE civil engineering faculty lecturer teachers professor
+Faculty: Dr. Kiran B M (Professor and HOD); Mr. Shekhar H G (Associate Professor); Dr. Vijaya Kumar Y M (Professor); Shrithi C G; Dr. Sanjith J; Ashwini B T; Kavan M R; Naveen Kumar S M; Chethan V R; Kavya B R; Abhilash D T; Dr. Goutham D R; Dhanalakshmi C K; Seema B N; Ranjith P; Vinay Kumar C V (listed as Assistant Professors unless specified otherwise).
+The directory notes research interests including nanomaterials, water and wastewater treatment, structural engineering and concrete technology, lakes, materials and soil-structure interaction.
+
+[DOC-037] MECHANICAL ENGINEERING FACULTY DIRECTORY
+Source: https://aitckm.edu.in/me/faculties-me/
+Keywords: mechanical ME faculty HOD professors
+Faculty: Dr. G M Satyanarayana (Professor and Head); M P Basavarajappa (Associate Professor); Dr. K G Suresh; Dr. Masood; Rajanna D; Suchith Kumar M T; Shreenivasaiah P H; Praveen D; Prashanth N; Ullas G S; Basava Prabhu K M; Kaushik G C; Deepa B N; Siddartha D E; Dr. Abhijith Vaidya S (Assistant Professors unless otherwise noted).
+
+[DOC-038] EEE FACULTY DIRECTORY
+Source: https://aitckm.edu.in/eee/faculties-eee/
+Keywords: EEE electrical electronics faculty HOD
+Faculty: Dr. G R Veerendra (Professor and HOD); Dr. Satyanarayana Rao R D (Associate Professor); Dr. Kavitha K M; Vasanthakumar T M; Dr. Poshitha B; Sridhar N H; Vinaya Kumara M B; Rumana Ali; Mohanakumara S D; Jayadeva Murthy M R; Kavya B V (Assistant Professors unless otherwise noted).
+
+[DOC-039] ECE FACULTY DIRECTORY
+Source: https://aitckm.edu.in/ece/faculties-ece/
+Keywords: electronics communication faculty ECE HOD principal
+Faculty: Dr. Goutham M A (Principal); Dr. Jagadeesh Chandra A P (Professor and HOD); Dr. Kumuda T (Professor); Dr. Vani H R (Professor); Dr. M S Harish (Associate Professor); Dr. Anil Kumar C (Associate Professor); Dr. Suma M (Associate Professor); Madhu Prakash R; Dr. Mahesh D S; Dr. Usha K P; Nagaveni C R; Manjula U R; Divya G S; Harish Kumar C R; Chandrakala C T; Anitha K T; Tasmia Namreen A; Dr. Rajappa H S; Dr. Raghukumar B S; Linet Jenevive D'souza; Meghashree M; Girish S (Assistant Professors unless otherwise noted).
+
+[DOC-040] CSE FACULTY DIRECTORY
+Source: https://aitckm.edu.in/cse/faculties-cse/
+Keywords: computer science CSE teaching faculty head
+Faculty: Dr. Pushpa Ravikumar (Professor and Head); Sangareddy B Kurtakoti; Gopalakrishna C (Associate Professor); Chandra Naik G; Harisha S; Dr. Anser Pasha C A; Bhavana D E; Keerthishree B T; Dr. Archana P; Dr. Arpitha C N; Dr. Kavya T M; Shruthi G K; Dr. Madhu B G; Raghuramegowda S M; Chaithra I V; Ravikumar; Saritha N; Theerthesha N O; Mithuna B N; Hemanth N G (Assistant Professors unless otherwise noted).
+
+[DOC-041] ISE FACULTY DIRECTORY
+Source: https://aitckm.edu.in/ise/faculties/
+Source: https://aitckm.edu.in/faculty-directory/ise/
+Keywords: information science ISE HOD teaching faculty
+Faculty: Dr. S Sampath (Head of Department); Dr. Pramod H B (Associate Professor); Deepashri K S; Ashwini Kamath; Rakesh S Raj; Dr. Anjali B V; Suman M H; Ravishankar R; Abhishek N; Ramyashree C A (Assistant Professors unless otherwise noted).
+Q: What is the ISE HOD email?
+A: hod.ise@aitckm.in, according to AIT faculty directory.
+
+[DOC-042] AIML FACULTY DIRECTORY
+Source: https://aitckm.edu.in/department-of-artificial-intelligence-and-machine-learning/faculties-aiml/
+Keywords: artificial intelligence machine learning AIML faculty HOD
+Faculty: Dr. Sunitha M R (HOD); Sathyabhama R; Purushotham B N; Sana Ara; Bhavya A; Sonia Fathima; Sindhu B M; Priyanaka M C; Gowrishree D (Assistant Professors unless otherwise noted).
+
+[DOC-043] MBA FACULTY DIRECTORY (HISTORIC DATE FLAG)
+Source: https://aitckm.edu.in/pg-ms/faculties/
+Keywords: MBA PG management studies professors staff
+Website's MBA faculty page, marked last updated on 2022-11-24: Dr. Prakash Rao K S (Professor and Head); Dr. Vinith H P (Assistant Professor); Mr. Ravi I A (Assistant Professor); Dr. Devananda H M (Associate Professor); Mrs. Aruna Saganali (Assistant Professor); Mrs. Shambhavi S M (Assistant Professor).
+CAUTION: This is a historically dated listing; verify names and positions with the department for current status.
+
+[DOC-044] ADMINISTRATIVE STAFF LIST
+Source: https://aitckm.edu.in/about-us/administration-staff/
+Keywords: administrative staff registrar FDA SDA office administration
+Registrar-designated staff listed: Mr. Sagar N S (M.Com, MBA); Mr. Chandregowda S (B.Com). The page shows both with Registrar designation; do not infer only one incumbent.
+Other staff listed: Ms. Vishala Y M (FDA); Mr. B P Manjunath (Accountant); Ms. B L Shivanna (FDA); Ms. H P Shailaja (FDA); Ms. A S Chandrika (FDA); Mr. Jagadish U D (FDA); Ms. Anitha H R (SDA); Ms. Chaithra M S (SDA); Ms. Leena D'Souza (SDA); Ms. Anushree K P (SDA); Ms. Nuthana U R (SDA); Mr. Krishnaprasad A C (SDA); Ms. Nandini B E (SDA); Mr. Koushik K M (SDA); Ms. Prathiba A K (SDA); Mr. Lohith Kumar G H (SDA); Ms. Savitha H N (SDA); Mr. C K Manjunatha (Helper/Attender); Mr. H Shiva Murthy (Helper/Attender); Mr. K S Ravishankar (Helper/Attender); Mr. Ninge Gowda H S (Peon); Mr. Govindaraju C (Peon).
+
+[DOC-045] STUDENT SAFETY, ANTI-RAGGING AND HOSTEL WARDENS
+Source: https://aitckm.edu.in/about-us/administrative-committees/anti-ragging-committee/
+Source: https://aitckm.edu.in/about-us/administrative-committees/college-internal-complaint-committee-cicc/
+Keywords: ragging grievance safety hostel warden ICC complaints
+AIT publishes anti-ragging and internal complaints committees to address student safety and complaints. The anti-ragging committee names Dr. Goutham M A (Principal, Chairman) and Dr. G M Sathyanarayana (Member Secretary). It identifies Mrs. Thara B K as Girls Hostel Warden and Dr. Vijaya Kumar Y M as Boys Hostel Warden. The Internal Complaints Committee lists Dr. Sunitha M R as Presiding Officer. For current committee contacts, see the source URLs.
+
+[DOC-046] PUBLIC SELF-DISCLOSURE RESOURCE GUIDE
+Source: https://aitckm.edu.in/about-us/mandatory-disclosure/
+Keywords: compliance annual report academic calendar fee prospectus scholarships IQAC NAAC NIRF AICTE
+AIT's official disclosure page links to: institutional development plan; accreditation and statutory approvals; annual reports (2022-23, 2023-24, 2024-25); audit reports; leadership information; academic program list; academic calendars (2023-24, 2024-25, 2025-26); course and department faculty details; fee structure and prospectus; academic collaboration; IQAC; research and incubation; central facilities; sports/NCC/NSS; hostels; placement activities and statistics; grievance cells; health services; alumni; RTI; notices; news; jobs; contact directory.
+Important: This knowledge base records the existence of these resources, not the full text of all linked PDFs. Cite the page and instruct users to open the appropriate official link for the latest document or exact numbers.
+
+[DOC-047] APPLICATION, SCHOLARSHIP AND STUDENT PORTAL RESOURCES
+Source: https://aitckm.edu.in/about-us/mandatory-disclosure/
+Keywords: online admission apply offline application scholarship SSP login college student portal
+The main site links to online admissions, a downloadable offline application, fee details, the DHI student portal, academic calendars, examination results and the Karnataka State Scholarship Portal (SSP). The official scholarship portal URL shown is https://ssp.postmatric.karnataka.gov.in/ . Application forms, eligibility rules and scholarship dates must be checked in their respective portals.
+
+[DOC-048] MECHANICAL ENGINEERING LABS AND CERTIFICATE COURSES
+Source: https://aitckm.edu.in/me/lab-manuals-me/
+Source: https://aitckm.edu.in/me/syllabus-of-add-on-certificate-courses-me/
+Keywords: mechanical lab experiment workshop CAD CAM certificate Python
+Listed practical facilities/syllabi include CAD modeling and analysis, heat transfer, materials testing, machine shop, fluid mechanics and machinery, foundry and forging, integrated manufacturing, energy conversion, measurements and metrology, workshop practice and mechanical drafting. Listed add-on syllabi include ANSYS, AutoCAD, biodiesel, Creo, Python for Mechanical and economics.
+
+[DOC-049] MECHANICAL ENGINEERING RESEARCH AND INDUSTRY COLLABORATION
+Source: https://aitckm.edu.in/me/research-and-development-lab-me/
+Source: https://aitckm.edu.in/me/mous-and-partnerships/
+Keywords: biofuel R&D mechanical research grant 3D printer industrial internship MOU
+The Mechanical Department research page lists a project 'Development of Technology to produce and use of Biofuel' with a stated total grant of Rs 68 lakh, sponsored by Karnataka Council for Technological Upgradation, PI Suchith Kumar M T. Equipment mentioned includes computerized diesel engine, gas analyser, smoke meter, 3D printer and scanner, ANSYS and CATIA. Its MoU page lists historical collaborations with KSBDB, Naveen Engineering Services, Design Technologies, ALTEM Technologies, Divide by Zero and Sai Projects and System Pvt Ltd. Dates and continuing validity vary; these are not promises of current internships.
+
+[DOC-050] UNIVERSITY AFFILIATION, ACCREDITATION AND FORMAL APPROVAL
+Source: https://aitckm.edu.in/about-us/mandatory-disclosure/
+Keywords: VTU approved UGC AICTE accreditation NAAC NBA
+The disclosure page links to VTU affiliation, AICTE approval, NAAC and NIRF resources and UGC 2(f) recognition. For current grade, cycle validity, and program-specific accreditation, refer to latest official approval certificates, not old summaries.
+
+[DOC-051] STUDENT COMMUNITY AND EXTENSION
+Source: https://aitckm.edu.in/about-us/mandatory-disclosure/
+Keywords: NCC NSS alumni cultural festival sports student welfare
+Official institute navigation lists NCC, NSS, alumni, sports facilities, Chunchana Annual Fest and student support/complaint resources. Event schedules and membership criteria should be retrieved from their linked webpages instead of guessed.
+
+[DOC-052] INTAKE CONFLICT EXAMPLE AND SAFE RESPONSE
+Source: https://aitckm.edu.in/me/
+Source: https://aitckm.edu.in/about-us/mandatory-disclosure/
+Keywords: sanctioned intake seats mechanical inconsistent information
+The Mechanical department's landing page contains inconsistent intake numbers: narrative text mentions 120 while its 'Department Info' box lists UG intake of 60. This is a documented conflict, not a settled current count. For current sanctioned intake, the chatbot should direct users to the latest admissions brochure/AICTE approval and state that conflicting figures appear on the website.
+
+[DOC-053] EXAMPLE CHATBOT QUESTIONS AND EXPECTED ANSWERS
+Sources: https://aitckm.edu.in/about-us/mandatory-disclosure/ and individual department pages above
+Keywords: FAQ sample RAG questions
+Q: Who is AIT's principal? A: Dr. Goutham M A (public self-disclosure).
+Q: Who is the CSE HOD? A: Dr. Pushpa Ravikumar (CSE faculty page).
+Q: Who is the AIML HOD? A: Dr. Sunitha M R (AIML faculty page).
+Q: Who is the ECE HOD? A: Dr. Jagadeesh Chandra A P (ECE faculty page).
+Q: Who is the ISE HOD? A: Dr. S Sampath (ISE faculty page).
+Q: Who is the Civil HOD? A: Dr. Kiran B M (Civil faculty page).
+Q: Who is the Mechanical HOD? A: Dr. G M Satyanarayana (Mechanical faculty page).
+Q: Who is the EEE HOD? A: Dr. G R Veerendra (EEE faculty page).
+Q: Does AIT offer a scholarship portal link? A: Its site links to Karnataka SSP; qualification and dates are on the SSP portal.
+Q: Can I view 2025-26 academic calendar? A: The public self-disclosure page links to it.
+Q: What is the current tuition fee for CSE? A: The precise current figure is not verified in this file; check official fee structure for the relevant admission quota/year.
+Q: How many mechanical seats are there? A: The department page has conflicting historical figures; confirm with the latest official sanctioned intake document.
+
+END OF EXPANDED MATERIAL

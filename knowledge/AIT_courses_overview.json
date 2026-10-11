@@ -1,0 +1,18 @@
+[
+  {
+    "question": "What are the courses AIT College offers?",
+    "answer": "AIT offers Bachelor of Engineering, Master of Technology, MBA, and PhD programs. Its engineering branches include Artificial Intelligence and Machine Learning, Civil Engineering, Computer Science and Engineering, Electrical and Electronics Engineering, Electronics and Communication Engineering, Information Science and Engineering, Mechanical Engineering, Computer Science and Engineering in Data Science, and Robotics and Artificial Intelligence Engineering.",
+    "keywords": "AIT college courses course offers offered programs programmes engineering branches degrees overview",
+    "category": "AIT course overview",
+    "as_of": "2026-10-10",
+    "source": "https://aitckm.edu.in/admissions/"
+  },
+  {
+    "question": "What engineering courses does AIT College offer?",
+    "answer": "AIT offers Bachelor of Engineering in Artificial Intelligence and Machine Learning, Civil Engineering, Computer Science and Engineering, Electrical and Electronics Engineering, Electronics and Communication Engineering, Information Science and Engineering, Mechanical Engineering, Computer Science and Engineering in Data Science, and Robotics and Artificial Intelligence Engineering.",
+    "keywords": "AIT engineering courses branches undergraduate BE offers offered",
+    "category": "AIT engineering branches",
+    "as_of": "2026-10-10",
+    "source": "https://aitckm.edu.in/admissions/"
+  }
+]

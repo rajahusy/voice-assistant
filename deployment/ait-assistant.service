@@ -1,0 +1,17 @@
+[Unit]
+Description=AIT document voice assistant
+After=sound.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ait
+WorkingDirectory=/home/ait/ait_project
+EnvironmentFile=-/home/ait/ait_project/.env
+ExecStart=/home/ait/ait_project/.venv/bin/python /home/ait/ait_project/assistant.py --config /home/ait/ait_project/config.local.json --mode voice --continuous
+Restart=no
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
