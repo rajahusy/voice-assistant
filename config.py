@@ -15,10 +15,13 @@ class Config:
     cloud_documents: bool = False
     cloud_compose: bool = False
     model: str = 'gpt-4o-mini'
+    search_model: str = 'gpt-4.1-mini'
     transcription_model: str = 'gpt-4o-transcribe'
-    transcription_prompt: str = ('English college enquiries at AIT College, Adichunchanagiri Institute of Technology, '
-        'Chikkamagaluru. Vocabulary: AIT, A I T, college, principal, HOD, admission, fees, qualification, '
-        'Computer Science, CSE, ECE. Transcribe what is spoken; do not answer the question.')
+    transcription_prompt: str = ''
+    voice_correction: bool = False
+    idle_prompt_seconds: float = 120
+    min_speech_seconds: float = 0.3
+    transcription_min_logprob: float = -0.7
     transcription_aliases: dict = field(default_factory=lambda: {'aat golan': 'AIT college', 'aat college': 'AIT college'})
     timeout: float = 15
     history_turns: int = 6
@@ -57,6 +60,8 @@ class Config:
                 raise ValueError(f'{name} must be positive')
         if self.energy_threshold < 0 or self.cooldown_seconds < 0:
             raise ValueError('energy_threshold and cooldown_seconds cannot be negative')
+        if self.idle_prompt_seconds <= 0 or self.min_speech_seconds <= 0:
+            raise ValueError('idle_prompt_seconds and min_speech_seconds must be positive')
         if self.stt not in ('auto', 'vosk', 'openai') or self.tts not in ('auto', 'espeak', 'piper', 'windows', 'openai'):
             raise ValueError('Unsupported speech provider')
         if not 0.25 <= self.tts_speed <= 4:

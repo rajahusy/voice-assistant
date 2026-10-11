@@ -13,7 +13,9 @@ import time
 import wave
 from enum import Enum
 from difflib import SequenceMatcher
-from openai_fallback import OpenAIClient
+from collections import deque
+from openai_fallback import OpenAIClient, CloudError
+from answer_service import Reply
 
 class State(str, Enum):
     IDLE = 'IDLE'
@@ -55,6 +57,7 @@ class Microphone:
     def record(self):
         cfg = self.config
         frames, voiced, silent = [], False, 0
+        preroll = deque(maxlen=6)
         overflows = 0
         block = max(1, int(cfg.sample_rate * 0.05))
         try:
@@ -78,10 +81,15 @@ class Microphone:
                     rms = math.sqrt(sum(sample * sample for sample in samples) / max(len(samples), 1))
                     active = rms >= cfg.energy_threshold
                     if active:
+                        if not voiced:
+                            frames.extend(preroll)
                         voiced, silent = True, 0
                     elif voiced:
                         silent += 1
-                    frames.append(data)
+                    if voiced:
+                        frames.append(data)
+                    else:
+                        preroll.append(data)
                     if voiced and silent * 0.05 >= cfg.silence_seconds:
                         break
                     if not voiced and (index + 1) * 0.05 >= cfg.listen_timeout:
@@ -100,9 +108,48 @@ class Microphone:
             wav.writeframes(b''.join(frames))
         return output.getvalue()
 
+class SpeechDetector:
+    """Reject non-speech locally before any transcription request."""
+    def __init__(self, config):
+        try:
+            import webrtcvad
+        except ImportError as error:
+            raise SpeechError('Install requirements-voice.txt for speech detection before using voice mode.') from error
+        self.vad = webrtcvad.Vad(3)
+        self.config = config
+
+    def has_speech(self, audio):
+        with wave.open(io.BytesIO(audio), 'rb') as wav:
+            if wav.getnchannels() != 1 or wav.getsampwidth() != 2:
+                raise SpeechError('Speech detection requires mono 16-bit WAV audio')
+            rate = wav.getframerate()
+            raw = wav.readframes(wav.getnframes())
+        samples = struct.unpack('<' + 'h' * (len(raw) // 2), raw)
+        if not samples:
+            return False
+        # Remove DC offset, then resample to WebRTC's supported 16 kHz rate.
+        mean = sum(samples) / len(samples)
+        pcm = []
+        for index in range(int(len(samples) * 16000 / rate)):
+            position = index * rate / 16000
+            left = int(position)
+            fraction = position - left
+            value = samples[left] * (1 - fraction) + samples[min(left + 1, len(samples) - 1)] * fraction - mean
+            pcm.append(max(-32768, min(32767, round(value))))
+        detector = type(self.vad)(3)  # Reset hangover state for every recording.
+        speech = 0
+        frames = len(pcm) // 480
+        for index in range(frames):
+            chunk = struct.pack('<480h', *pcm[index * 480:(index + 1) * 480])
+            speech += detector.is_speech(chunk, 16000)
+        return speech * 0.03 >= self.config.min_speech_seconds and speech / max(frames, 1) >= 0.15
+
+
 class Transcriber:
     def __init__(self, config, cloud):
         self.config, self.cloud, self.model = config, cloud, None
+        self.detector = SpeechDetector(config)
+        self.unclear = False
         self.provider = ''
         if config.stt in ('auto', 'vosk') and config.vosk_model:
             try:
@@ -124,10 +171,13 @@ class Transcriber:
                 raise SpeechError('No working STT provider. Configure an English Vosk model, or enable cloud processing and set OPENAI_API_KEY.')
 
     def transcribe(self, audio):
-        if not audio:
+        self.unclear = False
+        if not audio or not self.detector.has_speech(audio):
             return ''
         if self.provider == 'openai':
-            return self.cloud.transcribe(audio)
+            text = self.cloud.transcribe(audio)
+            self.unclear = not text.strip() or getattr(self.cloud, 'transcription_unclear', False) is True
+            return text
         with wave.open(io.BytesIO(audio), 'rb') as wav:
             recognizer = self.vosk.KaldiRecognizer(self.model, wav.getframerate())
             texts = []
@@ -256,6 +306,27 @@ class VoiceSession:
     def __init__(self, manager, microphone, transcriber, speaker, config):
         self.manager, self.microphone, self.transcriber, self.speaker, self.config = manager, microphone, transcriber, speaker, config
         self.state, self.last_answer, self.spoken_at = State.IDLE, '', 0
+        self.last_activity = time.monotonic()
+
+    def speak_notice(self, text, route):
+        self.state = State.SPEAKING
+        print('Assistant:', text)
+        try:
+            self.speaker.speak(text)
+        finally:
+            self.last_answer, self.spoken_at = text, time.monotonic()
+            if route == 'idle':
+                self.last_activity = self.spoken_at
+            time.sleep(self.config.cooldown_seconds)
+            self.state = State.IDLE
+        print('Listening...', flush=True)
+        return Reply(text, route)
+
+    def quiet(self):
+        self.state = State.IDLE
+        if time.monotonic() - self.last_activity >= self.config.idle_prompt_seconds:
+            return self.speak_notice('How can I help you?', 'idle')
+        return None
 
     def is_echo(self, text):
         return bool(self.last_answer and time.monotonic() - self.spoken_at < 4
@@ -266,20 +337,41 @@ class VoiceSession:
         self.state = State.LISTENING
         audio = self.microphone.record()
         if not audio:
-            self.state = State.IDLE
-            return None
+            return self.quiet()
         self.state = State.PROCESSING
         t = time.perf_counter()
         question = self.transcriber.transcribe(audio).strip()
         transcription = time.perf_counter() - t
         if not question or self.is_echo(question):
-            self.state = State.IDLE
-            return None
+            return self.quiet()
+        if getattr(self.transcriber, 'unclear', False) is True:
+            return self.speak_notice("I didn't hear that clearly. Could you repeat your question?", 'clarify')
+        self.last_activity = time.monotonic()
         raw_question = question
         question = normalize_transcript(question, self.config)
         if not question:
             self.state = State.IDLE
             return None
+        command = question.lower().strip(' .!?')
+        commands = ('stop', 'exit', 'quit', 'stop assistant', 'goodbye')
+        if command not in commands:
+            named_college = re.search(r'\b([A-Z][A-Za-z]*(?:\s+[A-Z][A-Za-z]*)*)\s+[Cc]ollege\b', question)
+            if named_college:
+                name = named_college.group(1)
+                if name.lower() not in ('the', 'this', 'your', 'our', 'my') and not any(
+                        re.search(r'\b' + re.escape(d) + r'\b', name, re.I) for d in self.config.domains):
+                    return self.speak_notice(f"I heard {name} College. Could you repeat the college's name clearly?", 'clarify')
+            # A lone topic is not a question unless we explicitly requested it.
+            words = re.findall(r'\w+', question)
+            if len(words) < 3 and not self.manager.pending_question and not self.manager.topic:
+                return self.speak_notice('Could you say your full question?', 'clarify')
+            if self.config.voice_correction and self.config.cloud_enabled and not self.manager.pending_question:
+                try:
+                    question = self.transcriber.cloud.correct_question(question)
+                except (CloudError, ValueError, TypeError):
+                    question = None
+                if not question:
+                    return self.speak_notice("I didn't understand the question clearly. Could you say it again?", 'clarify')
         if question != raw_question:
             print('Heard:', raw_question)
         print('You:', question)
@@ -301,6 +393,7 @@ class VoiceSession:
             self.manager.metrics['synthesis_seconds'] = time.perf_counter() - t
             self.manager.metrics['total_seconds'] = time.perf_counter() - started
         self.last_answer, self.spoken_at = reply.text, time.monotonic()
+        self.last_activity = self.spoken_at
         time.sleep(self.config.cooldown_seconds)
         self.state = State.IDLE
         print('Listening...', flush=True)
@@ -316,6 +409,7 @@ class VoiceSession:
                 self.speaker.speak(self.config.startup_greeting)
                 self.last_answer = self.config.startup_greeting
                 self.spoken_at = time.monotonic()
+                self.last_activity = self.spoken_at
                 time.sleep(self.config.cooldown_seconds)
             except KeyboardInterrupt:
                 self.speaker.stop()

@@ -1,6 +1,9 @@
 """Conservative evidence routing and short-term conversation memory."""
 import re
 import time
+import sqlite3
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from collections import deque
 from dataclasses import dataclass
 from knowledge_base import tokens
@@ -41,6 +44,9 @@ class ConversationManager:
         if self.pending_question:
             question = f'{self.pending_question} {question}'
             self.pending_question = ''
+        clock_answer = self.clock_answer(question)
+        if clock_answer:
+            return self.finish(question, Reply(clock_answer, 'clock'), started)
         resolved = self.resolve(question)
         if resolved is None:
             return self.finish(question, Reply('Which person or topic do you mean?', 'clarify'), started, remember=False)
@@ -50,9 +56,13 @@ class ConversationManager:
             self.pending_question = question
             return self.finish(question, Reply('Which department do you mean?', 'clarify'), started, remember=False)
         if re.search(r'\b(current|today|latest|now|this year|last year)\b', question.lower()):
-            return self.finish(question, Reply("I can't verify current or year-specific information from a live source. Please check the official source.", 'unverified'), started)
+            return self.finish(question, self.online_reply(resolved, institutional), started)
         t = time.perf_counter()
-        results = self.kb.search(resolved)
+        try:
+            results = self.kb.search(resolved)
+        except (sqlite3.Error, OSError, ValueError):
+            self.metrics['retrieval_seconds'] = time.perf_counter() - t
+            return self.finish(question, self.online_reply(resolved, institutional), started)
         self.metrics['retrieval_seconds'] = time.perf_counter() - t
         required = tokens(question)
         useful = []
@@ -91,21 +101,47 @@ class ConversationManager:
             reply = Reply(answer, 'local', (entry.source,) + tuple(entry.source_urls))
             self.topic = ' '.join(tokens(question if not followup else self.topic))
             self.institutional = institutional
-        elif institutional:
-            reply = Reply("I couldn't find that in my college documents.", 'unverified')
-        elif self.config.cloud_enabled and self.cloud:
-            t = time.perf_counter()
-            try:
-                reply = Reply(self.cloud.answer(resolved, self.cloud_history), 'cloud')
-                self.topic = ' '.join(tokens(resolved))
-                self.institutional = False
-            except (CloudError, ValueError) as error:
-                reply = Reply(f"Online answers are unavailable: {error}. Local document questions still work.", 'offline')
-            finally:
-                self.metrics['ai_seconds'] = time.perf_counter() - t
         else:
-            reply = Reply("I couldn't find that in my documents. Online answers are disabled.", 'unverified')
+            reply = self.online_reply(resolved, institutional)
         return self.finish(question, reply, started)
+
+    def online_reply(self, question, institutional=False):
+        if not self.config.cloud_enabled or not self.cloud:
+            return Reply("I couldn't verify that in my documents. Online answers are disabled.", 'unverified')
+        started = time.perf_counter()
+        try:
+            text = self.cloud.answer(question, self.cloud_history)
+            if not isinstance(text, str) or not text.strip():
+                raise CloudError('OpenAI returned an empty answer')
+            self.topic = ' '.join(tokens(question))
+            self.institutional = institutional
+            sources = getattr(self.cloud, 'answer_sources', ())
+            return Reply(text, 'cloud', tuple(sources) if isinstance(sources, (tuple, list)) else ())
+        except (CloudError, ValueError) as error:
+            return Reply(f"Online answers are unavailable: {error}. Local document questions still work.", 'offline')
+        finally:
+            self.metrics['ai_seconds'] += time.perf_counter() - started
+
+    @staticmethod
+    def clock_answer(question):
+        # Handle clock questions before pronoun resolution and freshness routing.
+        q = question.lower().replace('\u2019', "'")
+        date_query = re.search(r"\b(?:what(?:'s| is)?|tell me)\b.*\b(?:date|day)\b", q)
+        time_query = re.search(r"\b(?:what(?:'s| is)?|tell me)\b.*\btime\b", q)
+        if not (date_query or time_query):
+            return ''
+        # Avoid treating admissions dates, historical dates or time zones as clock requests.
+        words = set(re.findall(r'[a-z]+', q))
+        allowed = set('hi hello hey good morning afternoon evening please can could you tell me what s is the date day time today todays it now current of week and'.split())
+        if words - allowed:
+            return ''
+        now = datetime.now(ZoneInfo('Asia/Kolkata'))
+        parts = []
+        if date_query:
+            parts.append(f"Today is {now:%A}, {now.day} {now:%B %Y}.")
+        if time_query:
+            parts.append(f"The time is {now:%I:%M %p} India Standard Time.")
+        return ' '.join(parts)
 
     def finish(self, question, reply, started, remember=True):
         if remember:

@@ -7,9 +7,9 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 from config import Config
 from knowledge_base import OfflineKnowledgeBase
-from answer_service import ConversationManager
+from answer_service import ConversationManager, Reply
 from openai_fallback import CloudError, OpenAIClient
-from voice_io import VoiceSession, State, Transcriber, SpeechError, Microphone
+from voice_io import VoiceSession, State, Transcriber, SpeechError, Microphone, SpeechDetector
 
 class BehaviorTests(unittest.TestCase):
     def setUp(self):
@@ -70,10 +70,11 @@ class BehaviorTests(unittest.TestCase):
         second = self.manager.respond('Who is the principal of AIT?')
         self.assertEqual(first.text, second.text); self.assertEqual(len(self.manager.history), 2)
 
-    def test_F_missing_fact_does_not_go_online(self):
+    def test_F_missing_fact_uses_online_fallback(self):
         self.cfg.cloud_enabled = True
-        self.assertEqual(self.manager.respond('What is the principal salary at AIT?').route, 'unverified')
-        self.cloud.answer.assert_not_called()
+        self.cloud.answer.return_value = 'No official salary figure is published.'
+        self.assertEqual(self.manager.respond('What is the principal salary at AIT?').route, 'cloud')
+        self.cloud.answer.assert_called_once()
 
     def test_G_disconnect_offline_available(self):
         self.cfg.cloud_enabled = True
@@ -252,10 +253,43 @@ class BehaviorTests(unittest.TestCase):
         self.assertNotIn('Dr. Example', str(self.cloud.answer.call_args))
         self.assertEqual(len(self.manager.cloud_history), 1)
 
-    def test_current_information_is_not_invented(self):
+    def test_current_information_uses_online_fallback(self):
         self.cfg.cloud_enabled = True
+        self.cloud.answer.return_value = 'The official site does not publish current fees.'
+        self.assertEqual(self.manager.respond('What are the latest fees at AIT?').route, 'cloud')
+        self.cloud.answer.assert_called_once()
+
+    def test_fallback_respects_disabled_cloud(self):
         self.assertEqual(self.manager.respond('What are the latest fees at AIT?').route, 'unverified')
+        self.assertEqual(self.manager.respond('What is the principal salary at AIT?').route, 'unverified')
         self.cloud.answer.assert_not_called()
+
+    def test_clock_questions_use_india_clock_without_network(self):
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        with patch('answer_service.datetime') as clock:
+            clock.now.return_value = datetime(2026, 10, 11, 9, 30, tzinfo=ZoneInfo('Asia/Kolkata'))
+            for question in ('Hi, good morning. What is the date today?', "What's today's date?", 'What day is it?'):
+                reply = self.manager.respond(question)
+                self.assertEqual(reply.route, 'clock')
+                self.assertEqual(reply.text, 'Today is Sunday, 11 October 2026.')
+            self.assertIn('09:30 AM India Standard Time', self.manager.respond('What time is it?').text)
+            clock.now.assert_called_with(ZoneInfo('Asia/Kolkata'))
+        self.assertEqual(self.manager.respond('What is the admission date at AIT?').route, 'unverified')
+        self.cloud.answer.assert_not_called()
+
+    def test_retrieval_failure_uses_online_fallback(self):
+        import sqlite3
+        self.cfg.cloud_enabled = True
+        self.cloud.answer.return_value = 'An online answer.'
+        with patch.object(self.kb, 'search', side_effect=sqlite3.OperationalError('unavailable')):
+            self.assertEqual(self.manager.respond('Explain quantum entanglement').route, 'cloud')
+        self.cloud.answer.assert_called_once()
+
+    def test_empty_fallback_is_reported_without_crashing(self):
+        self.cfg.cloud_enabled = True
+        self.cloud.answer.return_value = ''
+        self.assertEqual(self.manager.respond('Explain quantum entanglement').route, 'offline')
 
     def test_formats_duplicates_and_rollback(self):
         (self.docs / 'notes.md').write_text('Robotics uses sensors.')
@@ -449,7 +483,151 @@ class CloudTests(unittest.TestCase):
         client.request.return_value = {'text':'English words'}
         self.assertEqual(client.transcribe(b'RIFF-test'), 'English words')
         self.assertIn(b'RIFF-test', client.request.call_args.args[1])
-        self.assertIn(b'name="prompt"', client.request.call_args.args[1])
-        self.assertIn(b'AIT College', client.request.call_args.args[1])
+        self.assertNotIn(b'name="prompt"', client.request.call_args.args[1])
+        self.assertIn(b'name="include[]"', client.request.call_args.args[1])
+
+    def test_fallback_search_is_required_for_current_and_college_facts(self):
+        client = OpenAIClient(Config(cloud_enabled=True))
+        client.request = Mock(return_value={'output':[{'content':[{'type':'output_text','text':'Verified answer.'}]}]})
+        for question in ('What are the latest fees at AIT?', 'What is the principal salary?', 'What is the weather today?'):
+            client.answer(question, [])
+            payload = json.loads(client.request.call_args.args[1])
+            self.assertEqual(payload['tools'], [{'type': 'web_search'}])
+            self.assertEqual(payload['tool_choice'], 'required')
+            self.assertEqual(payload['model'], 'gpt-4.1-mini')
+        client.answer('Explain quantum entanglement', [])
+        payload = json.loads(client.request.call_args.args[1])
+        self.assertNotIn('tools', payload)
+        self.assertEqual(payload['model'], Config().model)
+
+    def test_web_citations_display_separately_from_spoken_text(self):
+        client = OpenAIClient(Config(cloud_enabled=True))
+        client.request = Mock(return_value={'output':[{'content':[{
+            'type':'output_text', 'text':'## Answer\nThe capital is **New Delhi**. ([example.org](https://example.org/india))',
+            'annotations':[{'type':'url_citation', 'url':'https://example.org/india'}]
+        }]}]})
+        self.assertEqual(client.answer('What is the current capital of India?', []), 'Answer The capital is New Delhi.')
+        self.assertEqual(client.answer_sources, ('https://example.org/india',))
+
+class VoiceGuardTests(unittest.TestCase):
+    def audio(self, samples, rate=16000):
+        import struct, wave
+        buffer = io.BytesIO()
+        with wave.open(buffer, 'wb') as wav:
+            wav.setnchannels(1); wav.setsampwidth(2); wav.setframerate(rate)
+            wav.writeframes(struct.pack('<' + 'h' * len(samples), *samples))
+        return buffer.getvalue()
+
+    def session(self):
+        cfg = Config(cooldown_seconds=0, cloud_enabled=True, voice_correction=True)
+        manager = Mock(topic='', pending_question='')
+        manager.metrics = {}
+        mic, stt, speaker = Mock(), Mock(unclear=False), Mock()
+        return VoiceSession(manager, mic, stt, speaker, cfg)
+
+    def test_silence_and_dc_noise_never_reach_transcription(self):
+        cfg = Config()
+        cloud = Mock()
+        with patch.dict('os.environ', {'OPENAI_API_KEY': 'fake'}):
+            stt = Transcriber(Config(cloud_enabled=True), cloud)
+        for samples, rate in (([0] * 16000, 16000), ([1500] * 44100, 44100)):
+            audio = self.audio(samples, rate)
+            self.assertFalse(SpeechDetector(cfg).has_speech(audio))
+            self.assertEqual(stt.transcribe(audio), '')
+        cloud.transcribe.assert_not_called()
+
+    def test_brief_impulse_is_not_speech(self):
+        samples = [0] * 16000
+        samples[1000:1010] = [5000] * 10
+        self.assertFalse(SpeechDetector(Config()).has_speech(self.audio(samples)))
+
+    def test_idle_reminder_waits_two_minutes_and_resets(self):
+        session = self.session()
+        session.microphone.record.return_value = b''
+        session.last_activity = 0
+        with patch('voice_io.time.monotonic', return_value=119):
+            self.assertIsNone(session.step())
+            session.speaker.speak.assert_not_called()
+        with patch('voice_io.time.monotonic', return_value=120):
+            self.assertEqual(session.step().route, 'idle')
+            self.assertIsNone(session.step())
+        session.speaker.speak.assert_called_once_with('How can I help you?')
+        session.transcriber.transcribe.assert_not_called()
+        session.manager.respond.assert_not_called()
+
+    def test_unclear_speech_asks_without_answering_or_correction(self):
+        session = self.session()
+        previous_activity = session.last_activity
+        session.transcriber.transcribe.return_value = 'May know qualification'
+        session.transcriber.unclear = True
+        self.assertEqual(session.step().route, 'clarify')
+        session.manager.respond.assert_not_called()
+        session.transcriber.cloud.correct_question.assert_not_called()
+        self.assertEqual(session.last_activity, previous_activity)
+
+    def test_clear_correction_reaches_answer_and_commands_bypass_llm(self):
+        session = self.session()
+        session.transcriber.transcribe.return_value = 'Who is the principal of AIT?'
+        session.transcriber.cloud.correct_question.return_value = 'Who is the principal of AIT?'
+        session.manager.respond.return_value = Reply('Dr. Example.', 'local')
+        session.step()
+        session.manager.respond.assert_called_once_with('Who is the principal of AIT?')
+        session = self.session()
+        session.transcriber.transcribe.return_value = 'exit'
+        session.manager.respond.return_value = Reply('Goodbye.', 'command', command='exit')
+        self.assertEqual(session.step().command, 'exit')
+        session.transcriber.cloud.correct_question.assert_not_called()
+
+    def test_lone_topic_asks_for_full_question(self):
+        session = self.session()
+        session.transcriber.transcribe.return_value = 'AIT'
+        self.assertEqual(session.step().route, 'clarify')
+        session.manager.respond.assert_not_called()
+
+    def test_empty_transcription_stays_quiet_even_if_marked_unclear(self):
+        session = self.session()
+        session.transcriber.transcribe.return_value = ''
+        session.transcriber.unclear = True
+        self.assertIsNone(session.step())
+        session.manager.respond.assert_not_called()
+        session.speaker.speak.assert_not_called()
+
+    def test_unexpected_college_name_asks_instead_of_wrong_answer(self):
+        session = self.session()
+        session.transcriber.transcribe.return_value = 'Who is the principal of AD college?'
+        self.assertEqual(session.step().route, 'clarify')
+        session.manager.respond.assert_not_called()
+        session.speaker.speak.assert_called_once_with("I heard AD College. Could you repeat the college's name clearly?")
+
+    def test_llm_uncertainty_or_outage_asks_without_answering(self):
+        for error in (None, CloudError('offline')):
+            session = self.session()
+            session.transcriber.transcribe.return_value = 'What is the qualification?'
+            session.transcriber.cloud.correct_question.return_value = None
+            session.transcriber.cloud.correct_question.side_effect = error
+            self.assertEqual(session.step().route, 'clarify')
+            session.manager.respond.assert_not_called()
+
+    def test_llm_cannot_add_missing_subject_or_change_numbers(self):
+        client = OpenAIClient(Config(cloud_enabled=True))
+        def result(question, status='clear'):
+            return {'output':[{'content':[{'type':'output_text','text':json.dumps({'status':status,'question':question})}]}]}
+        client.request = Mock(return_value=result('Who is the principal of AIT?'))
+        self.assertIsNone(client.correct_question('Who is the principal?'))
+        client.request.return_value = result('What were the fees in 2026?')
+        self.assertIsNone(client.correct_question('What were the fees in 2025?'))
+        client.request.return_value = result('Who is the principal of AIT?')
+        self.assertEqual(client.correct_question('Who is the principle of AIT?'), 'Who is the principal of AIT?')
+        client.request.return_value = result('', 'unclear')
+        self.assertIsNone(client.correct_question('qualification'))
+
+    def test_low_confidence_transcript_is_marked_unclear(self):
+        client = OpenAIClient(Config(cloud_enabled=True))
+        client.request = Mock(return_value={'text':'AIT', 'logprobs':[{'logprob':-2.0}]})
+        self.assertEqual(client.transcribe(b'audio'), 'AIT')
+        self.assertTrue(client.transcription_unclear)
+        client.request.return_value = {'text':'A clear question', 'logprobs':[{'logprob':-0.05}]}
+        client.transcribe(b'audio')
+        self.assertFalse(client.transcription_unclear)
 
 if __name__ == '__main__': unittest.main()
